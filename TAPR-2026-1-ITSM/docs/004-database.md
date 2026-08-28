@@ -1,6 +1,6 @@
 # ADR-004: Adoção do Azure SQL Database como banco de dados do Sistema TAPR
 
-**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Pedro Henrique Placidina Maria
 
 ## Contexto
 
