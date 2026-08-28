@@ -1,6 +1,6 @@
 # ADR-003: Adoção do Power BI para visualização dos indicadores de ITSM
 
-**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Pedro Henrique Placidina Maria
 
 ## Contexto
 
