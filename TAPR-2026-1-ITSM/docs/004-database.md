@@ -1,45 +1,39 @@
-# ADR-XXX: [Título da decisão]
+# ADR-004: Adoção do Azure SQL Database como banco de dados do Sistema TAPR
 
-**Status:** [Proposto | Aceito | Rejeitado | Substituído | Obsoleto]  |  **Data:** [AAAA-MM-DD]  |  **Autores:** [Nome do time, área ou responsáveis]
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
 
 ## Contexto
 
-[Descreva o problema, cenário e motivação da decisão.]
-
-[Explique o contexto técnico e/ou de negócio.]
-
-[Inclua restrições, requisitos, volume, risco, prazo, compliance, custos ou qualquer outro fator relevante.]
+O Sistema TAPR precisa armazenar e consultar dados relacionados ao atendimento de suporte de TI. Esses dados incluem informações de chamados, analistas, clientes, categorias, filas, SLA, histórico de status e avaliações de satisfação.
 
 ## Decisão
 
-[Descreva objetivamente a decisão tomada.]
+Foi adotado o **Azure SQL Database** como banco de dados relacional utilizado pelo Sistema TAPR.
 
-[Se necessário, detalhe escopo, tecnologia, padrão, ferramenta, arquitetura ou regra adotada.]
+O Azure SQL Database possui dois papéis na arquitetura:
+
+1. **Fonte de dados mockada:** utilizada para simular a base de dados de produção relacionada ao Jira Service Management.
+
+2. **Destino analítico:** utilizado para armazenar os dados após o processamento realizado pelas Azure Functions, incluindo informações e métricas utilizadas na análise de ITSM.
 
 ## Consequências
 
-(+) [Benefício 1 da decisão]
+(+) Utilização de um banco de dados relacional adequado para dados estruturados de ITSM.
 
-(+) [Benefício 2 da decisão]
+(+) Permite utilização de SQL, JOINs e agregações para consultas analíticas.
 
-(+) [Benefício 3 da decisão]
+(-) Cria dependência do serviço Azure SQL Database e do ecossistema Microsoft Azure.
 
-(-) [Ponto negativo 1 da decisão]
+(-) O custo do serviço pode aumentar conforme o volume de dados e os recursos computacionais utilizados.
 
-(-) [Ponto negativo 2 da decisão]
+(-) A utilização de uma base mockada não representa completamente todas as características e restrições do ambiente real do Jira Service Management.
 
 ## Alternativas rejeitadas
 
-- [Alternativa 1]&#58; [motivo pelo qual foi rejeitada]
-
-- [Alternativa 2]&#58; [motivo pelo qual foi rejeitada]
-
-- [Alternativa 3]&#58; [motivo pelo qual foi rejeitada]
-
 ## Links
 
-- Substitui: [ADR anterior, se houver]
+- Substitui: Não se aplica.
 
-- Relacionado: [outro ADR, RFC, issue, epic, roadmap, diagrama, PoC, benchmark etc.]
+- Relacionado: `003-power-bi.md`
 
-- Evidências: [links para documentos, testes, benchmarks, atas, análises técnicas]
+- Evidências: `docs/justificativa-tecnologica.md`, `docs/Arquitetura.png` e código em `src/`
