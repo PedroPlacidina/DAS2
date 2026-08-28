@@ -1,6 +1,6 @@
 # ADR-001: Adoção do Microsoft Azure como plataforma de nuvem
 
-**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Pedro Henrique Placidina Maria
 
 ## Contexto
 
