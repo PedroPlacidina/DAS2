@@ -1,45 +1,43 @@
-# ADR-XXX: [Título da decisão]
+# ADR-001: Adoção do Microsoft Azure como plataforma de nuvem
 
-**Status:** [Proposto | Aceito | Rejeitado | Substituído | Obsoleto]  |  **Data:** [AAAA-MM-DD]  |  **Autores:** [Nome do time, área ou responsáveis]
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
 
 ## Contexto
 
-[Descreva o problema, cenário e motivação da decisão.]
+O Sistema TAPR necessita de uma infraestrutura capaz de executar o processamento dos dados de ITSM, armazenar os dados utilizados pela aplicação e disponibilizar os resultados para análise.
 
-[Explique o contexto técnico e/ou de negócio.]
-
-[Inclua restrições, requisitos, volume, risco, prazo, compliance, custos ou qualquer outro fator relevante.]
+A solução precisa trabalhar com diferentes componentes, incluindo processamento de dados, armazenamento de arquivos, banco de dados e ferramenta de visualização. Dessa forma, seria necessário utilizar uma infraestrutura que permitisse integrar esses diferentes serviços de maneira organizada.
 
 ## Decisão
 
-[Descreva objetivamente a decisão tomada.]
+Foi adotado o **Microsoft Azure** como plataforma de computação em nuvem para hospedar e disponibilizar os principais serviços utilizados pelo Sistema TAPR.
 
-[Se necessário, detalhe escopo, tecnologia, padrão, ferramenta, arquitetura ou regra adotada.]
+A arquitetura utiliza serviços gerenciados do Azure, incluindo:
+
+- Azure Functions para execução do processamento e das funções de extração;
+- Azure SQL Database para armazenamento dos dados;
+- Azure Blob Storage para armazenamento dos dados brutos.
+
+A utilização desses serviços permite que os diferentes componentes da solução sejam integrados dentro do mesmo ambiente de nuvem.
 
 ## Consequências
 
-(+) [Benefício 1 da decisão]
+(+) Permite utilizar serviços gerenciados sem a necessidade de administrar servidores físicos.
 
-(+) [Benefício 2 da decisão]
+(+) Facilita a integração entre Azure Functions, Azure SQL Database e Azure Blob Storage.
 
-(+) [Benefício 3 da decisão]
+(+) Permite escalar os recursos de acordo com a necessidade da aplicação.
 
-(-) [Ponto negativo 1 da decisão]
-
-(-) [Ponto negativo 2 da decisão]
+(-) Cria dependência do ecossistema Microsoft Azure.
 
 ## Alternativas rejeitadas
 
-- [Alternativa 1]&#58; [motivo pelo qual foi rejeitada]
-
-- [Alternativa 2]&#58; [motivo pelo qual foi rejeitada]
-
-- [Alternativa 3]&#58; [motivo pelo qual foi rejeitada]
+- **AWS**: foi rejeitada devido à menor integração com os serviços Microsoft utilizados no projeto e à necessidade de utilizar diferentes serviços equivalentes para compor a arquitetura
 
 ## Links
 
-- Substitui: [ADR anterior, se houver]
+- Substitui: Não se aplica.
 
-- Relacionado: [outro ADR, RFC, issue, epic, roadmap, diagrama, PoC, benchmark etc.]
+- Relacionado: `adr003-azure-function.md`, `adr002-database.md`, `adr004-power-bi.md`
 
-- Evidências: [links para documentos, testes, benchmarks, atas, análises técnicas]
+- Evidências: `docs/justificativa-tecnologica.md` e `docs/Arquitetura.png`
