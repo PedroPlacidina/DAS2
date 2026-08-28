@@ -1,45 +1,52 @@
-# ADR-XXX: [Título da decisão]
+# ADR-003: Adoção do Azure Functions para processamento dos dados
 
-**Status:** [Proposto | Aceito | Rejeitado | Substituído | Obsoleto]  |  **Data:** [AAAA-MM-DD]  |  **Autores:** [Nome do time, área ou responsáveis]
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
 
 ## Contexto
 
-[Descreva o problema, cenário e motivação da decisão.]
+O Sistema TAPR precisa realizar a extração e o processamento dos dados utilizados na análise de ITSM.
 
-[Explique o contexto técnico e/ou de negócio.]
+A solução possui diferentes conjuntos de dados relacionados ao atendimento de suporte, como chamados, analistas, categorias, SLA, CSAT e outras informações utilizadas na geração dos indicadores.
 
-[Inclua restrições, requisitos, volume, risco, prazo, compliance, custos ou qualquer outro fator relevante.]
+Era necessário definir uma forma de executar essas tarefas sem a necessidade de manter permanentemente um servidor dedicado para o processamento.
 
 ## Decisão
 
-[Descreva objetivamente a decisão tomada.]
+Foi adotado o **Azure Functions** como plataforma para execução das funções responsáveis pela extração e processamento dos dados do Sistema TAPR.
 
-[Se necessário, detalhe escopo, tecnologia, padrão, ferramenta, arquitetura ou regra adotada.]
+As funções são implementadas em **Python** e organizadas de acordo com as diferentes necessidades de extração e processamento dos dados.
+
+Entre os processos existentes no projeto estão funções relacionadas à extração de:
+
+- Analistas;
+- Categorias;
+- Chamados;
+- SLA;
+- CSAT;
+- Outros dados utilizados pelo sistema.
+
+As Azure Functions realizam o processamento necessário e integram-se aos demais componentes da arquitetura, incluindo o Azure SQL Database e o Azure Blob Storage.
+
+A utilização do modelo serverless permite que a infraestrutura necessária para execução das funções seja gerenciada pelo próprio Azure.
 
 ## Consequências
 
-(+) [Benefício 1 da decisão]
+(+) Não é necessário manter um servidor dedicado permanentemente para executar as funções.
 
-(+) [Benefício 2 da decisão]
+(+) Permite organizar o processamento em funções independentes.
 
-(+) [Benefício 3 da decisão]
+(+) Possui integração com outros serviços utilizados na arquitetura Azure.
 
-(-) [Ponto negativo 1 da decisão]
-
-(-) [Ponto negativo 2 da decisão]
+(-) Cria dependência do serviço Azure Functions.
 
 ## Alternativas rejeitadas
 
-- [Alternativa 1]&#58; [motivo pelo qual foi rejeitada]
-
-- [Alternativa 2]&#58; [motivo pelo qual foi rejeitada]
-
-- [Alternativa 3]&#58; [motivo pelo qual foi rejeitada]
+- **Máquina virtual com aplicação Python executando continuamente**: foi rejeitada porque exigiria gerenciamento do sistema operacional, servidor, atualizações e disponibilidade da infraestrutura.
 
 ## Links
 
-- Substitui: [ADR anterior, se houver]
+- Substitui: Não se aplica.
 
-- Relacionado: [outro ADR, RFC, issue, epic, roadmap, diagrama, PoC, benchmark etc.]
+- Relacionado: `adr001-cloud.md`, `adr002-database.md`
 
-- Evidências: [links para documentos, testes, benchmarks, atas, análises técnicas]
+- Evidências: `src/function_app.py`, módulos de extração em `src/` e `docs/justificativa-tecnologica.md`
