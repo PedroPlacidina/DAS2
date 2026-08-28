@@ -1,6 +1,6 @@
 # ADR-003: Adoção do Azure Functions para processamento dos dados
 
-**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Equipe TAPR
+**Status:** Aceito  |  **Data:** 2026-08-27  |  **Autores:** Pedro Henrique Placidina Maria
 
 ## Contexto
 
